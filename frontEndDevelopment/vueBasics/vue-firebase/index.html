@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <title>Learning Vue</title>
+</head>
+<body>
+    <h1>hello, Vue!</h1>
+
+    <div id="app">
+        <!--  <h2>i am the template of the root component</h2>  here we can output dynamic data -->
+        <!-- title, author, age are dynamic changable values, we can use them in the template, and it will be updated when the value changes -->
+        <p>{{ title }} - {{ author }} - {{ age }}</p>
+
+        <!-- Click events -->
+         <!-- The @click is directive in vue. Here it allows us to react to events-->
+          <!---- In the double quotes we can write javascript code -->
+          <!----- We use the {{ ... }} only when we are outputing the values in the browser not in the directives-->
+        <button @click="age++">Increase Age</button>
+        <button @click="age--">Decrease Age</button>
+
+        
+        <!------here inside the double quotes we Invoce the method changeTitle inside the app.js ---->
+        <!------We can also pass in two functions when we can them arguments ----->
+        <!--Say i want to pass in the new title as an argument and then update the value of the title to any value we pass in the function-->
+        <!--- Now we can accept that argument into the function changeTitle in the app.js we pass the string into the function---->
+        <div @click="changeTitle('Oathbringer')">Change Book Title</div>
+
+        
+
+
+    </div>
+        <p>Not here</p>
+
+    <script src="app.js"></script> 
+</body>
+</html>
