@@ -26,7 +26,23 @@
         <!---- We changed the "true/false" value with a dynamic for v-if to evaluate if its true or false ---->
         
         <div v-if="showBooks">
-            <p>{{ title }} - {{ author }} - {{ age }}</p>
+            <!--- for outputting lists we dont have an age anymore so we delete it otherwise is {{ age }} ----->
+            <!---- we dont to do that for every book each time so we use v-for-->
+            <!-- <p>{{ books[0].title }} - {{ books[0].author }}</p>
+                <p>{{ books[1].title }} - {{ books[1].author }}</p>
+                <p>{{ books[2].title }} - {{ books[2].author }}</p> -->
+                <!--------Instead we create a ul for each book object-->
+                <!----we say: item in... and then whatevr you want to cycle through in our case books----->
+                <!--- item is the default name but we can change it-->
+                <ul>
+                    <li v-for="book in books">
+                        <!---- Inside the LI tag we have access to the individual book as we cycle through them-->
+                        <!--- to for each iteration this book is going to.. First be this item in app.js {title, author} -->
+                        <h3>{{ book.title }}</h3>
+                        <p>{{ book.author }}</p>
+
+                    </li>
+                </ul>
         </div>
         <!---- In the @click we reference the method toggleShowBooks ---->
         <!-- then we need to create that function in the methods property inside the app.js file -->

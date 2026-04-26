@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+        p, h3, ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li.fav {
+            background: #ff9ed2;
+            color: #eee;
+        }
+    </style>
+    <title>Learning Vue</title>
+</head>
+<body>
+    <h1>hello, Vue!</h1>
+        
+
+<!-- Conditional Rendering ειναι ακυρο εδω-->
+
+    <div id="app">
+
+        <!------ Attribute binding is when we bind dynamic values to HTML attributes---->
+        <!---- what if we want the value of href to be dynamic ??-->
+        <!---- typicaly we do this <a href="http://www.google.com">oti einai xero go</a> -->
+        <!---- Now we will take the http value and create a data property in app.js-->
+        <!--- In order for the href value to be dynamic we have to do data or attribute binding -->
+        <!--- The way we do this in Vue is by using v-bind: and then whatever attribute we want to data bind in our case href-->
+        <!-- by doing it this way means that whatever is inside the "..." is now dynamic and we can access the different properties in app.js-->
+         <!--- Instead of writing v-bind: we can write just the : and the computer sees that we do data binding-->
+         <!--- We can do the same with many things like images and not only for hrefs...-->
+        <a :href="url">Best webite ever</a>
+
+
+        <!---- What if we want to pass in a dynamic value for the v-if directive? ---->
+        <!---- We changed the "true/false" value with a dynamic for v-if to evaluate if its true or false ---->
+        
+        <div v-if="showBooks">
+            <!--- for outputting lists we dont have an age anymore so we delete it otherwise is {{ age }} ----->
+            <!---- we dont to do that for every book each time so we use v-for-->
+            <!-- <p>{{ books[0].title }} - {{ books[0].author }}</p>
+                <p>{{ books[1].title }} - {{ books[1].author }}</p>
+                <p>{{ books[2].title }} - {{ books[2].author }}</p> -->
+                <!--------Instead we create a ul for each book object-->
+                <!----we say: item in... and then whatevr you want to cycle through in our case books----->
+                <!--- item is the default name but we can change it-->
+                <ul>
+                    <li v-for="book in books" :class="{ fav: book.isFav}">
+                        <!---- Inside the LI tag we have access to the individual book as we cycle through them-->
+                        <!--- to for each iteration this book is going to.. First be this item in app.js {title, author} -->
+                        <h3>{{ book.title }}</h3>
+                        <p>{{ book.author }}</p>
+
+                    </li>
+                </ul>
+        </div>
+        <!---- In the @click we reference the method toggleShowBooks ---->
+        <!-- then we need to create that function in the methods property inside the app.js file -->
+        <!--- we want to toggle the span (Hide Books) into show books-->
+        <!-- We want to show Hide Books if the value of showBooks is currently true because then we want to hide them-->
+         <!--Instead of double v-if we can use v-else to --->
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide Books</span>  <!--- OR v-if="showBooks == false"-->
+            <span v-else>Show Books</span>
+        </button>
+
+        <br>
+
+        <!--- v-show-->
+        <!---The difference between v-if and v-show is that when we use v-if its takes it out of the DOM completely when this is false -->
+        <!-- When we use v-show it just uses the CSS display property to insert the element when it is true and hides it when it is false -->
+        <!-----<div v-show="showBooks">currently showing books</div> --->
+
+        <!---- mouse events --->
+
+        <!---- i want to attach a different mouse event to each box --->
+        <!---- First the mouse over.. We define the function in the methods property --->
+        <!---- We put the function handleEvent inside the () for the reference -->
+        <!---- mouse leave and double click ---->
+        <!---- What if i want to pass in a custom parameter, our own arguments? ---->
+        <!--- We can explicity say that we want the event object to be passed in with $event--->
+        <!-- <div class="box" @mouseover="handleEvent($event,5)">mouseover (enter)</div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">double click</div>
+
+
+        ------ mouse move event    
+        <div class="box" @mousemove="handleMousemove">position - {{ x }} {{ y }}</div> -->
+
+
+    </div>
+
+    <script src="app.js"></script> 
+</body>
+</html>
